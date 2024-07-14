@@ -17,18 +17,6 @@ const emailToken = privateConfig.TEST_EMAIL_TOKEN
 export const nextAuthConfig: AuthOptions = {
   adapter: PrismaAdapter(dbClient) as AuthOptions["adapter"],
   providers: compact([
-    EmailProvider({
-      ...emailToken,
-      server: {
-        host: privateConfig.EMAIL_SERVER_HOST,
-        port: privateConfig.EMAIL_SERVER_PORT,
-        auth: {
-          user: privateConfig.EMAIL_SERVER_USER,
-          pass: privateConfig.EMAIL_SERVER_PASSWORD,
-        },
-      },
-      from: privateConfig.EMAIL_FROM,
-    }),
     privateConfig.GITHUB_ID &&
       privateConfig.GITHUB_SECRET &&
       GithubProvider({
