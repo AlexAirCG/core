@@ -1,6 +1,8 @@
 import { z } from "zod";
 
 const privateConfigSchema = z.object({
+  TEST_EMAIL_TOKEN: z.string().optional(),
+
   GITHUB_ID: z.string().optional(),
   GITHUB_SECRET: z.string().optional(),
 
