@@ -1,5 +1,7 @@
 import NextAuth from "next-auth";
 
+declare type UserId = string;
+
 declare module "next-auth" {
   interface Session {
     user: {
