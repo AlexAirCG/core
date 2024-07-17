@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { Github } from "lucide-react";
+import { GitFork } from "lucide-react";
 import { ClientSafeProvider } from "next-auth/react";
 import { useOAuthSignIn } from "../_vm/use-oauth-sign-in";
 
@@ -11,7 +11,7 @@ export function ProviderButton({ provider }: { provider: ClientSafeProvider }) {
   const getIcon = (provider: ClientSafeProvider) => {
     switch (provider.id) {
       case "github":
-        return <Github className="mr-2 h-4 w-4" />;
+        return <GitFork className="mr-2 h-4 w-4" />;
       default:
         return null;
     }
