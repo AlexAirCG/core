@@ -25,7 +25,7 @@ export function ProviderButton({ provider }: { provider: ClientSafeProvider }) {
       onClick={() => oauthSignIn.signIn()}
     >
       {oauthSignIn.isPending ? (
-        <Spinner className="mr-2 h-4 w-4 animate-spin" /*label="Вход"*/ />
+        <Spinner className="mr-2 h-4 w-4 animate-spin" />
       ) : (
         getIcon(provider)
       )}
