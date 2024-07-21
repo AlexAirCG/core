@@ -12,7 +12,7 @@ import { LogOut, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useAppSession, useRole } from "@/entities/user/session.client";
+import { useAppSession } from "@/entities/user/session.client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSignOut } from "@/features/auth/use-sign-out";
 import { SignInButton } from "@/features/auth/sign-in-button";
