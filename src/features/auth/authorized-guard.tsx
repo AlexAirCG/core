@@ -1,7 +1,7 @@
 "use client";
 
 import { FullPageSpinner } from "@/components/ui/full-page-spinner";
-import { useAppSession } from "@/entities/user/session.client";
+import { useAppSession } from "@/entities/user/session";
 import { signIn } from "next-auth/react";
 import { useEffect } from "react";
 
