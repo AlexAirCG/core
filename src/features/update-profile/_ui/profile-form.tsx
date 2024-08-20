@@ -17,6 +17,8 @@ import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
 import { AvatarField } from "./avatar-field";
 import { Profile } from "@/entities/user/profile";
+import { useUpdateProfileMutation } from "../_queries";
+import { UserId } from "@/entities/user/user";
 
 const profileFormSchema = z.object({
   name: z
@@ -32,27 +34,43 @@ const profileFormSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
+const getDefaultValues = (profile: Profile) => ({
+  email: profile.email,
+  image: profile.image ?? undefined,
+  name: profile.name ?? "",
+});
+
 export function ProfileForm({
   onSuccess,
   submitText = "Сохранить",
   profile,
+  userId,
 }: {
+  userId: UserId;
   profile: Profile;
   onSuccess?: () => void;
   submitText?: string;
 }) {
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
-    defaultValues: {
-      email: profile.email,
-      image: profile.image ?? undefined,
-      name: profile.name ?? "",
-    },
+    defaultValues: getDefaultValues(profile),
+  });
+
+  const updateProfileMutation = useUpdateProfileMutation();
+
+  const handleSubmit = form.handleSubmit(async (data) => {
+    const newProfile = await updateProfileMutation.mutateAsync({
+      userId,
+      data,
+    });
+
+    form.reset(getDefaultValues(newProfile.profile));
+    onSuccess?.();
   });
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(console.log)} className="space-y-8">
+      <form onSubmit={handleSubmit} className="space-y-8">
         <FormField
           control={form.control}
           name="email"
