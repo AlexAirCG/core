@@ -1,5 +1,4 @@
-import { Profile, SessionEntity, UserEntity, UserId } from "../_domain/types";
-import { userRepository } from "../_repositores/user";
+import { Profile, SessionEntity, UserId } from "../_domain/types";
 import { createProfileAbility, createUserAbility } from "../_domain/ability";
 import { AuthorizatoinError } from "@/components/lib/errors";
 import { profileRepository } from "../_repositores/profile";

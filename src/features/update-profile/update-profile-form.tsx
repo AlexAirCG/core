@@ -4,6 +4,7 @@ import { ProfileForm } from "./_ui/profile-form";
 import { Spinner } from "@/components/ui/spinner";
 import { getProfileQuery } from "@/entities/user/_queries";
 import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
 export function UpdateProfileForm({
   userId,
@@ -15,6 +16,13 @@ export function UpdateProfileForm({
   const profileQuery = useQuery({
     ...getProfileQuery(userId),
   });
+
+  const router = useRouter();
+  const handleSuccess = () => {
+    if (callbackUrl) {
+      router.push(callbackUrl);
+    }
+  };
 
   if (profileQuery.isPending) {
     return <Spinner /*label="Загрузка профиля"*/ />;
@@ -28,7 +36,7 @@ export function UpdateProfileForm({
     <ProfileForm
       userId={userId}
       profile={profileQuery.data.profile}
-      // onSuccess={handleSuccess}
+      onSuccess={handleSuccess}
       submitText={callbackUrl ? "Продолжить" : "Сохранить"}
     />
   );
