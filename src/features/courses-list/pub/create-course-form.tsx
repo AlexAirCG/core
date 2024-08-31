@@ -62,7 +62,7 @@ export function CreateCourseForm({
           )}
         />
         <Button type="submit" disabled={isCreateTransition}>
-          Добавить
+          Создать
         </Button>
       </form>
     </Form>
