@@ -1,6 +1,6 @@
 import { ROLES, UserEntity } from "../_domain/types";
 import { createId } from "@/components/lib/id";
-import { userRepository } from "../_repositores/user.repositores";
+import { userRepository } from "../_repositores/user";
 import { privateConfig } from "@/components/config/private";
 
 type CreateUser = {
